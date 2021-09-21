@@ -1,0 +1,35 @@
+<form id="poker-cards-form">
+	<div class="row" style="margin: 20px 0 0 50px;">
+			<% @suits.each do |suit| %>
+				<div class="card text-grey mb-3 name-and-values" style="max-width: 12rem; height: 15rem;">
+					<div class="card-header text-center"><%= suit.name %></div>
+					<div class="card-body">
+						<img name="<%= suit.name %>" class="card-img" src="<%= suit.url %>"></img>
+					</div>
+				</div>
+			<% end %>
+			<% @faces.each do |face| %>
+				<div class="card text-grey mb-3 name-and-values" style="max-width: 12rem; height: 15rem;">
+					<div class="card-header text-center"><%= face.value %></div>
+					<div class="card-body">
+						<img name="<%= face.value %>"  class="card-img" src="<%= face.url %>"></img>
+					</div>
+				</div>
+			<% end %>
+	</div>
+</form>
+<!-- <div>
+	<button id="btn" class="btn btn-primary btn-sm">Submit</button>
+</div> -->
+
+<script>
+	$('#btn').on('click', function() {
+		alert('Clicked')
+	})
+
+	$('.name-and-values').on('click', function(e) {
+		e.preventDefault();
+		console.log(e.target.name)
+	})
+
+</script>

@@ -1,0 +1,3 @@
+class HandChecker < ApplicationRecord
+
+end

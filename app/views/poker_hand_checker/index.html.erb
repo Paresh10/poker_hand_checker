@@ -1,35 +1,77 @@
-<form id="poker-cards-form">
+<!-- <form id="poker-cards-form">
 	<div class="row" style="margin: 20px 0 0 50px;">
-			<% @suits.each do |suit| %>
+			<#% @suits.each do |suit| %>
 				<div class="card text-grey mb-3 name-and-values" style="max-width: 12rem; height: 15rem;">
-					<div class="card-header text-center"><%= suit.name %></div>
+					<div class="card-header text-center"><#%= suit.name %></div>
 					<div class="card-body">
-						<img name="<%= suit.name %>" class="card-img" src="<%= suit.url %>"></img>
+						<img name="<#%= suit.name %>" class="card-img" src="<#%= suit.url %>"></img>
 					</div>
 				</div>
-			<% end %>
-			<% @faces.each do |face| %>
+			<#% end %>
+			<#% @faces.each do |face| %>
 				<div class="card text-grey mb-3 name-and-values" style="max-width: 12rem; height: 15rem;">
-					<div class="card-header text-center"><%= face.value %></div>
+					<div class="card-header text-center"><#%= face.value %></div>
 					<div class="card-body">
-						<img name="<%= face.value %>"  class="card-img" src="<%= face.url %>"></img>
+						<img name="<#%= face.value %>"  class="card-img" src="<#%= face.url %>"></img>
 					</div>
 				</div>
-			<% end %>
+			<#% end %>
 	</div>
 </form>
 <!-- <div>
 	<button id="btn" class="btn btn-primary btn-sm">Submit</button>
 </div> -->
+<style>
+	#mainContainer {
+		margin: auto;
+	  width: 50%;
+	  padding: 10px;
+	}
+	#mainRow {
+		margin-top: 50px;
+	}
+</style>
+
+<div class="container" id="mainContainer">
+	<h4 style="margin-top: 50px;">Poker Hand Checker</h4>
+	<div class="row" id="mainRow">
+		<form>
+		  <div class="mb-3">
+		    <label class="form-label">Name</label>
+		    <input class="form-control form-control-sm" id="name">
+		  </div>
+		  <div class="mb-3">
+		    <label class="form-label">Enter A Hand</label>
+		    <input class="form-control form-control-sm" id="hand" placeholder="Ex: 2D 2C 2K QD KC">
+		  </div>
+		  <div class="mb-3">
+				<button id="submitBtn" type="submit" class="btn btn-primary btn-sm">Submit</button>
+		  </div>
+		</form>
+	</div>
+</div>
+
+<div class="modalForResults">
+	<%= render :partial => 'hand_parser' %>
+</div>
+
 
 <script>
-	$('#btn').on('click', function() {
-		alert('Clicked')
-	})
-
-	$('.name-and-values').on('click', function(e) {
+// This funtion use getters method to get the input values and makes an ajax call to send the params to 'hand_parser' method
+	$('#submitBtn').on('click', function(e) {
 		e.preventDefault();
-		console.log(e.target.name)
+
+		let name = $('#name').val()
+		let submittedHandValue = $('#hand').val()
+
+		$.ajax({
+			url: '/poker_hand_checker/hand_parser',
+			data: {'value':  submittedHandValue, name},
+			type: 'post'
+		}).done(function(response) {
+			$('.modalForResults').html(response)
+			$('.modalForResults').modal('show')
+		})
 	})
 
 </script>

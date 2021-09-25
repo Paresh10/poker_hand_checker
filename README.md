@@ -20,3 +20,6 @@ This app is deployed [here](https://poker-hand-checker.onrender.com/). To locall
 3. Once you are inside the repo then run `bundle install`. You also might need to update your bundle package and in that case you can run `bundle update`.
 4. Bundle will install all the gems and dependencies from gemfile. Now you will have to create and migrate the db. To do so please run `rake db:create` adn then `rake db:migrate`. I like to see the logs, so my go to command is `rake log db:migrate`.
 5. That's it now start your server by running `bin/rails server`
+
+## Test
+To run the tests please run `bundle exec rspec` from your terminal

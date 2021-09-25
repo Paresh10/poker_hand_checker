@@ -11,7 +11,6 @@ class PokerHandCheckerController < ApplicationController
 		# And capitalize all the str chacarcters with upcase method
 		@values = params[:value].upcase.gsub(/\s+/, "")
 		
-		puts @values
 		# Using if/else respond with accurate ranking
 		# Using split sort method let the user enter input in any format
 		# for example 2H2D2CKCQD can also be 2H2D2CQDCK and it will still evaluates to true
@@ -24,13 +23,13 @@ class PokerHandCheckerController < ApplicationController
 		elsif @values.split('').sort == "2H3H2D3C3D".split('').sort
 			@result =  "Full House"
 		elsif @values.split('').sort == "2H7H2D3C3D".split('').sort
-			@result =  "Two Pair"						
+			@result =  "Two Pair"
 		elsif @values.split('').sort == "2H7H7D7C7S".split('').sort
 			@result =  "Four Of A Kind"
 		elsif @values.split('').sort == "10HJHQHKHAH".split('').sort
 			@result =  "Straight Flush"
 		elsif @values.split('').sort == "4H4SKS5D10S".split('').sort
-			@result =  "One Pair"						
+			@result =  "One Pair"
 		else
 			@result = "Invalid Hand"
 		end

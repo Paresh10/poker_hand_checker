@@ -9,8 +9,19 @@
           <p> You have a <%=@result%> </p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+        <button id="closeModal" class="btn btn-secondary btn-sm">Close</button>
       </div>
     </div>
   </div>
 </div>
+
+
+<script>
+
+// Close the modal and clear the form using event delegation
+  $(document).on('click', '#closeModal', function() {
+    $('.modalForResults').modal('hide')
+    $('#hand_parser_form').trigger('reset')
+  })
+
+</script>

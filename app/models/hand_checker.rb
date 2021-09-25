@@ -19,7 +19,7 @@ class HandChecker < ApplicationRecord
 				@result =  "One Pair"
 			else
 	       str = ''
-				 @result = "Invalid Hand"
+				@result = "Invalid Hand"
 			end
 	end
 end
